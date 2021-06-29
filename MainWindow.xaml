@@ -6,7 +6,57 @@
         xmlns:local="clr-namespace:WpfExample"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="140"></Setter>
+            <Setter Property="Background" Value="#FF5CD6D6"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBox Text="Name : "></TextBox>
+            <TextBox Text="{Binding test.Name}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Margin="0,5" Orientation="Horizontal">
+            <TextBox Text="Value : "></TextBox>
+            <TextBlock Width="150" Text="{Binding test.Value}"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBox Text="Test : "></TextBox>
+            <TextBox Text="{Binding test.Value}" Width="100"></TextBox>
+        </StackPanel>
+
+        <Button Content="Test" Width="100"  Command="{Binding ClickCommand}">
+        </Button>
+
+        <CheckBox Margin="0,20" Content="Enable button" IsChecked="{Binding ButtonEnabled}"></CheckBox>
+
+        <ComboBox ItemsSource="{Binding Persons}" SelectedItem="{Binding SelectedPerson}" DisplayMemberPath="Name"></ComboBox>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBox Text="Selected Name : "></TextBox>
+            <TextBox Text="{Binding SelectedPerson.Name}" Width="100"></TextBox>
+        </StackPanel>
+
+        <ListView Margin="0,20" ItemsSource="{Binding Persons}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="2" Background="AliceBlue" Orientation="Horizontal">
+                        <TextBlock Width="20" Text="{Binding Id}"></TextBlock>
+                        <TextBlock Width="30" Text="{Binding Name}" FontStyle="Italic" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="control 1" Click="Button_Click_1" ></Button>
+            <Button Content="control 2" Click="Button_Click_2"></Button>
+        </StackPanel>
+        <ContentControl BorderBrush="Red" BorderThickness="4" Margin="20" Background="#FF5CD6D6" Content="{Binding CurrentControl}"></ContentControl>
+    </StackPanel>
 </Window>
